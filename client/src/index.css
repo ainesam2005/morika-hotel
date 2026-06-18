@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-navy text-slate-100 font-sans;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  .btn-gold {
+    @apply bg-gold hover:bg-gold-dark text-navy font-semibold px-6 py-3 rounded transition-colors duration-200;
+  }
+  .btn-outline-gold {
+    @apply border border-gold text-gold hover:bg-gold hover:text-navy font-semibold px-6 py-3 rounded transition-colors duration-200;
+  }
+  .card {
+    @apply bg-navy-light rounded-xl overflow-hidden;
+  }
+  .input {
+    @apply w-full bg-navy-lighter border border-slate-600 text-slate-100 placeholder-slate-400 rounded-lg px-4 py-3 focus:outline-none focus:border-gold transition-colors;
+  }
+  .label {
+    @apply block text-sm font-medium text-slate-300 mb-1;
+  }
+  .section-title {
+    @apply text-3xl md:text-4xl font-serif text-white mb-3;
+  }
+  .section-subtitle {
+    @apply text-gold text-sm uppercase tracking-widest font-medium mb-2;
+  }
+}
+
+/* react-datepicker custom dark theme */
+.react-datepicker {
+  background-color: #1e293b !important;
+  border: 1px solid #d4a843 !important;
+  font-family: 'Inter', sans-serif !important;
+}
+.react-datepicker__header {
+  background-color: #0f172a !important;
+  border-bottom: 1px solid #334155 !important;
+}
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+  color: #d4a843 !important;
+}
+.react-datepicker__day {
+  color: #e2e8f0 !important;
+}
+.react-datepicker__day:hover {
+  background-color: #d4a843 !important;
+  color: #0f172a !important;
+}
+.react-datepicker__day--selected,
+.react-datepicker__day--in-range,
+.react-datepicker__day--range-start,
+.react-datepicker__day--range-end {
+  background-color: #d4a843 !important;
+  color: #0f172a !important;
+}
+.react-datepicker__day--disabled {
+  color: #475569 !important;
+}
+.react-datepicker__navigation-icon::before {
+  border-color: #d4a843 !important;
+}
