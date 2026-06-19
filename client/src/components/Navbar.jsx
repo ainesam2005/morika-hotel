@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { Menu, X, User, LogOut, Settings, ChevronDown } from 'lucide-react';
+import { Menu, X, User, LogOut, Settings, ChevronDown, Sun, Moon } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 
 const links = [
   { to: '/', label: 'Home' },
@@ -13,6 +14,7 @@ const links = [
 
 export default function Navbar() {
   const { user, logout, isAdmin } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -51,8 +53,15 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Auth section */}
+          {/* Theme toggle + Auth section */}
           <div className="hidden md:flex items-center gap-3">
+            <button
+              onClick={toggleTheme}
+              title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="w-9 h-9 flex items-center justify-center rounded-lg text-slate-300 hover:text-gold hover:bg-navy-lighter transition-colors"
+            >
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
             {user ? (
               <div className="relative">
                 <button
@@ -107,6 +116,10 @@ export default function Navbar() {
             </NavLink>
           ))}
           <div className="border-t border-navy-lighter pt-3 space-y-2">
+            <button onClick={toggleTheme} className="flex items-center gap-2 text-sm text-slate-300 py-2 w-full">
+              {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+              {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+            </button>
             {user ? (
               <>
                 <Link to="/profile" onClick={() => setMobileOpen(false)} className="block text-sm text-slate-300 py-2">My Bookings</Link>

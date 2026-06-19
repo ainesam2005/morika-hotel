@@ -1,13 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
         navy: {
-          DEFAULT: '#0f172a',
-          light: '#1e293b',
-          lighter: '#334155',
+          DEFAULT: 'rgb(var(--navy) / <alpha-value>)',
+          light: 'rgb(var(--navy-light) / <alpha-value>)',
+          lighter: 'rgb(var(--navy-lighter) / <alpha-value>)',
         },
         gold: {
           DEFAULT: '#d4a843',

@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useAuth } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -38,7 +39,7 @@ function AdminRoute({ children }) {
 
 export default function App() {
   return (
-    <>
+    <ThemeProvider>
       <Toaster position="top-right" toastOptions={{ style: { background: '#1e293b', color: '#f8fafc', border: '1px solid #d4a843' } }} />
       <Navbar />
       <Routes>
@@ -60,6 +61,6 @@ export default function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />
-    </>
+    </ThemeProvider>
   );
 }

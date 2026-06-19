@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Theme CSS Variables ── */
+:root {
+  --navy: 15 23 42;
+  --navy-light: 30 41 59;
+  --navy-lighter: 51 65 85;
+}
+
+html.light {
+  --navy: 248 250 252;
+  --navy-light: 255 255 255;
+  --navy-lighter: 241 245 249;
+}
+
 @layer base {
   body {
     @apply bg-navy text-slate-100 font-sans;
@@ -36,7 +49,48 @@
   }
 }
 
-/* react-datepicker custom dark theme */
+/* ── Light Mode Overrides ── */
+html.light body {
+  color: #0f172a;
+}
+html.light .text-white { color: #0f172a !important; }
+html.light .text-slate-100 { color: #1e293b !important; }
+html.light .text-slate-200 { color: #334155 !important; }
+html.light .text-slate-300 { color: #374151 !important; }
+html.light .text-slate-400 { color: #4b5563 !important; }
+html.light .text-slate-500 { color: #6b7280 !important; }
+html.light .border-navy-lighter { border-color: #cbd5e1 !important; }
+html.light .border-navy-light { border-color: #e2e8f0 !important; }
+html.light .border-slate-600 { border-color: #d1d5db !important; }
+html.light .border-slate-700 { border-color: #e5e7eb !important; }
+html.light .border-slate-800 { border-color: #f3f4f6 !important; }
+html.light .input {
+  background-color: #f9fafb !important;
+  border-color: #d1d5db !important;
+  color: #0f172a !important;
+}
+html.light .input::placeholder { color: #9ca3af !important; }
+/* Nav */
+html.light nav.fixed {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: #e2e8f0 !important;
+}
+html.light nav .bg-navy-light {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+/* Hover states in light mode */
+html.light .hover\:bg-navy-lighter\/50:hover { background-color: rgba(241,245,249,0.5) !important; }
+/* Hero/section backgrounds that use navy */
+html.light .bg-navy\/80 { background-color: rgba(248,250,252,0.8) !important; }
+html.light .bg-navy\/60 { background-color: rgba(248,250,252,0.6) !important; }
+/* Gradient overlays on hero images should still be dark for readability */
+html.light .hero-overlay { background: linear-gradient(to right, rgba(15,23,42,0.7), transparent) !important; }
+/* Tables */
+html.light table thead tr { background-color: #f9fafb; }
+html.light .animate-pulse { background-color: #e5e7eb !important; }
+
+/* ── react-datepicker dark theme ── */
 .react-datepicker {
   background-color: #1e293b !important;
   border: 1px solid #d4a843 !important;
@@ -69,4 +123,20 @@
 }
 .react-datepicker__navigation-icon::before {
   border-color: #d4a843 !important;
+}
+
+/* ── react-datepicker light theme ── */
+html.light .react-datepicker {
+  background-color: #ffffff !important;
+  border: 1px solid #d4a843 !important;
+}
+html.light .react-datepicker__header {
+  background-color: #f1f5f9 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+html.light .react-datepicker__day {
+  color: #0f172a !important;
+}
+html.light .react-datepicker__day--disabled {
+  color: #94a3b8 !important;
 }
