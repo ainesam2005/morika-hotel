@@ -96,7 +96,19 @@ export default function Home() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          {featuredRooms.map((room) => <RoomCard key={room._id} room={room} />)}
+          {featuredRooms.length === 0
+            ? [...Array(3)].map((_, i) => (
+                <div key={i} className="card animate-pulse">
+                  <div className="h-52 bg-navy-lighter" />
+                  <div className="p-5 space-y-3">
+                    <div className="h-5 bg-navy-lighter rounded w-3/4" />
+                    <div className="h-4 bg-navy-lighter rounded w-full" />
+                    <div className="h-4 bg-navy-lighter rounded w-1/2" />
+                  </div>
+                </div>
+              ))
+            : featuredRooms.map((room) => <RoomCard key={room._id} room={room} />)
+          }
         </div>
         <div className="text-center">
           <Link to="/rooms" className="btn-outline-gold inline-flex items-center gap-2">

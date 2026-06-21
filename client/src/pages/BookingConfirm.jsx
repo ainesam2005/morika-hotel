@@ -1,15 +1,29 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { CheckCircle, CalendarDays, Users, Home } from 'lucide-react';
+import { CheckCircle, CalendarDays, Home, AlertCircle } from 'lucide-react';
 import api from '../utils/api';
 
 export default function BookingConfirm() {
   const { bookingId } = useParams();
   const [booking, setBooking] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    api.get(`/bookings/${bookingId}`).then(({ data }) => setBooking(data)).catch(() => {});
+    api.get(`/bookings/${bookingId}`)
+      .then(({ data }) => setBooking(data))
+      .catch(() => setError(true));
   }, [bookingId]);
+
+  if (error) return (
+    <div className="pt-24 min-h-screen flex items-center justify-center px-4">
+      <div className="text-center max-w-sm">
+        <AlertCircle size={48} className="text-red-400 mx-auto mb-4" />
+        <h2 className="font-serif text-2xl text-white mb-2">Could Not Load Booking</h2>
+        <p className="text-slate-400 mb-6">Your payment may still have gone through. Check My Bookings to confirm.</p>
+        <Link to="/profile" className="btn-gold">My Bookings</Link>
+      </div>
+    </div>
+  );
 
   if (!booking) return (
     <div className="pt-24 min-h-screen flex items-center justify-center">
@@ -28,7 +42,7 @@ export default function BookingConfirm() {
 
         <div className="bg-navy-light rounded-2xl p-6 text-left space-y-4 mb-8 border border-navy-lighter">
           <div className="flex items-center gap-3 pb-4 border-b border-navy-lighter">
-            <img src={booking.room?.images?.[0]} alt="" className="w-16 h-14 rounded-lg object-cover" />
+            <img src={booking.room?.images?.[0] || '/img/bed1.jpg'} alt="" className="w-16 h-14 rounded-lg object-cover" />
             <div>
               <p className="text-white font-semibold">{booking.room?.name}</p>
               <p className="text-slate-400 text-sm capitalize">{booking.room?.type} Room</p>
@@ -54,7 +68,7 @@ export default function BookingConfirm() {
           </div>
           <div className="pt-3 border-t border-navy-lighter flex items-center justify-between">
             <span className="text-slate-400 text-sm">Booking Reference</span>
-            <span className="text-white font-mono text-xs">{booking._id?.slice(-8).toUpperCase()}</span>
+            <span className="text-white font-mono text-xs tracking-wider">{booking._id?.slice(-8).toUpperCase()}</span>
           </div>
           <div className="flex items-center justify-between">
             <span className="text-slate-400 text-sm">Status</span>
@@ -65,8 +79,12 @@ export default function BookingConfirm() {
         </div>
 
         <div className="flex gap-3">
-          <Link to="/profile" className="btn-outline-gold flex-1 flex items-center justify-center gap-2"><CalendarDays size={16} /> My Bookings</Link>
-          <Link to="/" className="btn-gold flex-1 flex items-center justify-center gap-2"><Home size={16} /> Back Home</Link>
+          <Link to="/profile" className="btn-outline-gold flex-1 flex items-center justify-center gap-2">
+            <CalendarDays size={16} /> My Bookings
+          </Link>
+          <Link to="/" className="btn-gold flex-1 flex items-center justify-center gap-2">
+            <Home size={16} /> Back Home
+          </Link>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Users, Maximize2, Star, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { Users, Maximize2, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import BookingWidget from '../components/BookingWidget';
 import api from '../utils/api';
 
@@ -77,11 +77,7 @@ export default function RoomDetail() {
             <div>
               <div className="flex items-start justify-between gap-4 mb-4">
                 <h1 className="font-serif text-3xl text-white">{room.name}</h1>
-                <div className="flex items-center gap-1 shrink-0">
-                  <Star size={16} className="text-gold fill-gold" />
-                  <span className="text-white font-semibold">4.9</span>
-                  <span className="text-slate-400 text-sm">(128)</span>
-                </div>
+                <span className="px-3 py-1 rounded-full bg-gold/10 text-gold text-xs font-semibold capitalize border border-gold/20">{room.type}</span>
               </div>
               <div className="flex gap-4 mb-4">
                 <span className="flex items-center gap-1 text-slate-400 text-sm"><Users size={14} className="text-gold" /> Up to {room.capacity} guests</span>

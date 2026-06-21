@@ -71,8 +71,8 @@ export default function Footer() {
         <div className="border-t border-navy-lighter mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-slate-500 text-sm">© {new Date().getFullYear()} Morika Hotel. All rights reserved.</p>
           <div className="flex gap-4">
-            <a href="#" className="text-slate-500 hover:text-gold text-sm transition-colors">Privacy Policy</a>
-            <a href="#" className="text-slate-500 hover:text-gold text-sm transition-colors">Terms of Service</a>
+            <Link to="/privacy" className="text-slate-500 hover:text-gold text-sm transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="text-slate-500 hover:text-gold text-sm transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

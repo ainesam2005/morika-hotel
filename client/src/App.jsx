@@ -22,6 +22,10 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminRooms from './pages/admin/AdminRooms';
 import AdminBookings from './pages/admin/AdminBookings';
 import AdminMessages from './pages/admin/AdminMessages';
+import EditProfile from './pages/EditProfile';
+import NotFound from './pages/NotFound';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -54,11 +58,14 @@ export default function App() {
         <Route path="/booking/:roomId" element={<ProtectedRoute><Booking /></ProtectedRoute>} />
         <Route path="/booking/confirm/:bookingId" element={<ProtectedRoute><BookingConfirm /></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Route path="/profile/edit" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
         <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
         <Route path="/admin/rooms" element={<AdminRoute><AdminRooms /></AdminRoute>} />
         <Route path="/admin/bookings" element={<AdminRoute><AdminBookings /></AdminRoute>} />
         <Route path="/admin/messages" element={<AdminRoute><AdminMessages /></AdminRoute>} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </ThemeProvider>

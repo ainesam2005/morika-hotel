@@ -61,4 +61,29 @@ router.get('/me', verifyToken, (req, res) => {
   res.json({ user: req.user });
 });
 
+// PUT /api/auth/profile — update name, phone, or password
+router.put('/profile', verifyToken, async (req, res) => {
+  try {
+    const { name, phone, currentPassword, newPassword } = req.body;
+    const user = await User.findById(req.user._id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    if (name?.trim()) user.name = name.trim();
+    if (phone !== undefined) user.phone = phone;
+
+    if (newPassword) {
+      if (!currentPassword) return res.status(400).json({ message: 'Current password is required to set a new one' });
+      const valid = await user.comparePassword(currentPassword);
+      if (!valid) return res.status(400).json({ message: 'Current password is incorrect' });
+      if (newPassword.length < 6) return res.status(400).json({ message: 'New password must be at least 6 characters' });
+      user.password = newPassword;
+    }
+
+    await user.save();
+    res.json({ user });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 module.exports = router;

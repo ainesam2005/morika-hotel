@@ -8,7 +8,7 @@ const { requireAdmin } = require('../middleware/adminMiddleware');
 // Auth: create booking
 router.post('/', verifyToken, async (req, res) => {
   try {
-    const { roomId, checkIn, checkOut, guests, specialRequests } = req.body;
+    const { roomId, checkIn, checkOut, guests, specialRequests, guestName, guestPhone } = req.body;
     const room = await Room.findById(roomId);
     if (!room) return res.status(404).json({ message: 'Room not found' });
 
@@ -37,6 +37,8 @@ router.post('/', verifyToken, async (req, res) => {
       totalNights,
       totalPrice,
       specialRequests,
+      guestName,
+      guestPhone,
     });
 
     await booking.populate('room');

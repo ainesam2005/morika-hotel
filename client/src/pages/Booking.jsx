@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import {
@@ -190,6 +190,8 @@ function PaymentForm({ bookingId, totalPrice, room, nights, onSuccess }) {
 // ─── Main Booking Page ───────────────────────────────────────────────────────
 export default function Booking() {
   const { roomId } = useParams();
+  const [searchParams] = useSearchParams();
+  const resumeBookingId = searchParams.get('resume'); // existing pending booking to complete
   const navigate = useNavigate();
   const { user } = useAuth();
   const { bookingData, updateBooking } = useBooking();
@@ -215,6 +217,20 @@ export default function Booking() {
       .catch(() => navigate('/rooms'));
   }, [roomId]);
 
+  // If resuming a pending booking, prefill dates and jump to payment
+  useEffect(() => {
+    if (!resumeBookingId) return;
+    api.get(`/bookings/${resumeBookingId}`)
+      .then(({ data }) => {
+        setCheckIn(new Date(data.checkIn));
+        setCheckOut(new Date(data.checkOut));
+        setGuests(data.guests);
+        setBookingId(data._id);
+        setStep(4);
+      })
+      .catch(() => {}); // if fetch fails just start from step 1
+  }, [resumeBookingId]);
+
   const nights = checkIn && checkOut ? Math.ceil((checkOut - checkIn) / 86400000) : 0;
   const subtotal = room ? nights * room.pricePerNight : 0;
   const taxes = +(subtotal * 0.1).toFixed(2);
@@ -239,8 +255,10 @@ export default function Booking() {
     }
   };
 
-  // Step 3 → 4: create booking record in DB, then show payment
+  // Step 3 → 4: validate guest details, create booking record, show payment
   const handleCreateBooking = async () => {
+    if (!guestDetails.name.trim()) return toast.error('Full name is required');
+    if (!guestDetails.email.trim()) return toast.error('Email is required');
     setCreatingBooking(true);
     try {
       const { data: booking } = await api.post('/bookings', {
@@ -249,6 +267,8 @@ export default function Booking() {
         checkOut: checkOut.toISOString(),
         guests,
         specialRequests,
+        guestName: guestDetails.name,
+        guestPhone: guestDetails.phone,
       });
       setBookingId(booking._id);
       updateBooking({

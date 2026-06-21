@@ -20,6 +20,8 @@ const bookingSchema = new mongoose.Schema({
   },
   stripePaymentIntentId: { type: String },
   specialRequests: { type: String },
+  guestName: { type: String },
+  guestPhone: { type: String },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Booking', bookingSchema);

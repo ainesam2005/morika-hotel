@@ -63,7 +63,7 @@ const CustomTooltip = ({ active, payload, label, isDark }) => {
 export default function AdminDashboard() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
-  const [stats, setStats] = useState({ rooms: 0, bookings: 0, revenue: 0, messages: 0, guests: 0 });
+  const [stats, setStats] = useState({ rooms: 0, bookings: 0, revenue: 0, messages: 0, guests: 0, paidBookings: 0 });
   const [recentBookings, setRecentBookings] = useState([]);
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -74,9 +74,10 @@ export default function AdminDashboard() {
   useEffect(() => {
     Promise.all([api.get('/rooms'), api.get('/bookings'), api.get('/messages')])
       .then(([{ data: rooms }, { data: bookings }, { data: messages }]) => {
-        const revenue = bookings.filter((b) => b.paymentStatus === 'paid').reduce((sum, b) => sum + b.totalPrice, 0);
+        const paid = bookings.filter((b) => b.paymentStatus === 'paid');
+        const revenue = paid.reduce((sum, b) => sum + b.totalPrice, 0);
         const guests = new Set(bookings.map((b) => b.user?._id)).size;
-        setStats({ rooms: rooms.length, bookings: bookings.length, revenue, messages: messages.length, guests });
+        setStats({ rooms: rooms.length, bookings: bookings.length, revenue, messages: messages.length, guests, paidBookings: paid.length });
         setRecentBookings(bookings.slice(0, 6));
         setChartData(buildChartData(bookings));
       })
@@ -90,7 +91,7 @@ export default function AdminDashboard() {
     { icon: DollarSign, label: 'Revenue', value: `$${stats.revenue.toLocaleString()}`, color: 'text-gold', bg: 'bg-gold/10' },
     { icon: MessageSquare, label: 'Messages', value: stats.messages, color: 'text-purple-400', bg: 'bg-purple-900/20' },
     { icon: Users, label: 'Unique Guests', value: stats.guests, color: 'text-cyan-400', bg: 'bg-cyan-900/20' },
-    { icon: TrendingUp, label: 'Paid Bookings', value: recentBookings.filter((b) => b.paymentStatus === 'paid').length, color: 'text-emerald-400', bg: 'bg-emerald-900/20' },
+    { icon: TrendingUp, label: 'Paid Bookings', value: stats.paidBookings, color: 'text-emerald-400', bg: 'bg-emerald-900/20' },
   ];
 
   const STATUS_COLOR = { pending: 'text-yellow-400', confirmed: 'text-green-400', cancelled: 'text-red-400', completed: 'text-blue-400' };

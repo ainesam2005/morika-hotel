@@ -1,6 +1,7 @@
 require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 const express = require('express');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const connectDB = require('./config/db');
 
 const authRoutes = require('./routes/auth');
@@ -19,6 +20,15 @@ app.use('/api/payments/webhook', express.raw({ type: 'application/json' }));
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
+
+// Rate-limit login to 10 attempts per 15 minutes per IP
+app.use('/api/auth/login', rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  message: { message: 'Too many login attempts. Please try again in 15 minutes.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+}));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/rooms', roomRoutes);
