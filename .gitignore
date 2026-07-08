@@ -6,6 +6,11 @@ client/node_modules/
 client/dist/
 client/build/
 
+# Next.js
+.next/
+out/
+.vercel
+
 # Environment files (keep .env.example, ignore real .env)
 server/.env
 client/.env

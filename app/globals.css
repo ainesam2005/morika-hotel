@@ -16,6 +16,9 @@ html.light {
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-navy text-slate-100 font-sans;
     font-family: 'Inter', sans-serif;
@@ -23,20 +26,34 @@ html.light {
   h1, h2, h3, h4 {
     font-family: 'Playfair Display', serif;
   }
+  ::selection {
+    background-color: #d4a843;
+    color: #0f172a;
+  }
+  /* Clear keyboard-focus outline for accessibility */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid #d4a843;
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
 }
 
 @layer components {
   .btn-gold {
-    @apply bg-gold hover:bg-gold-dark text-navy font-semibold px-6 py-3 rounded transition-colors duration-200;
+    @apply inline-flex items-center justify-center gap-2 bg-gradient-to-b from-gold to-gold-dark text-navy font-semibold px-6 py-3 rounded-lg shadow-lg shadow-gold/20 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-gold active:translate-y-0 active:shadow-md;
   }
   .btn-outline-gold {
-    @apply border border-gold text-gold hover:bg-gold hover:text-navy font-semibold px-6 py-3 rounded transition-colors duration-200;
+    @apply inline-flex items-center justify-center gap-2 border border-gold text-gold hover:bg-gold hover:text-navy font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-gold;
   }
   .card {
-    @apply bg-navy-light rounded-xl overflow-hidden;
+    @apply bg-navy-light rounded-xl overflow-hidden transition-all duration-300;
   }
   .input {
-    @apply w-full bg-navy-lighter border border-slate-600 text-slate-100 placeholder-slate-400 rounded-lg px-4 py-3 focus:outline-none focus:border-gold transition-colors;
+    @apply w-full bg-navy-lighter border border-slate-600 text-slate-100 placeholder-slate-400 rounded-lg px-4 py-3 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/30 transition-all;
   }
   .label {
     @apply block text-sm font-medium text-slate-300 mb-1;
@@ -47,6 +64,25 @@ html.light {
   .section-subtitle {
     @apply text-gold text-sm uppercase tracking-widest font-medium mb-2;
   }
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold-light via-gold to-gold-dark bg-clip-text text-transparent;
+  }
+}
+
+/* ── Scroll-reveal animation (toggled by the <Reveal> component) ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
 }
 
 /* ── Light Mode Overrides ── */

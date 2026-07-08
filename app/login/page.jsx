@@ -62,11 +62,6 @@ function LoginForm() {
           {loading ? 'Signing in...' : 'Sign In'}
         </button>
       </form>
-
-      <div className="mt-6 p-4 bg-navy-light rounded-xl border border-navy-lighter text-sm">
-        <p className="text-slate-400 mb-1">Demo Admin:</p>
-        <p className="text-gold font-mono text-xs">admin@morika.com / Admin@1234</p>
-      </div>
     </div>
   );
 }
@@ -81,7 +76,7 @@ export default function Login() {
             <span className="text-navy text-2xl font-bold font-serif">M</span>
           </div>
           <h2 className="font-serif text-4xl text-white mb-3">Welcome Back</h2>
-          <p className="text-slate-300 text-lg">Sign in to manage your reservations and enjoy exclusive member benefits.</p>
+          <p className="text-slate-300 text-lg">Sign in to see your bookings and manage your stay.</p>
         </div>
       </div>
 

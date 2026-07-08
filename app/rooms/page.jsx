@@ -29,11 +29,11 @@ export default function Rooms() {
   return (
     <div className="pt-24 pb-20 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 mb-10">
-        <p className="section-subtitle">Accommodations</p>
+        <p className="section-subtitle">Our Rooms</p>
         <div className="flex items-start justify-between flex-wrap gap-4">
           <div>
-            <h1 className="section-title">Our Rooms & Suites</h1>
-            <p className="text-slate-400">Discover our collection of {rooms.length} handcrafted accommodations</p>
+            <h1 className="section-title">Rooms &amp; Suites</h1>
+            <p className="text-slate-400">Browse our {rooms.length} rooms and find the one that's right for you.</p>
           </div>
           <button onClick={() => setShowFilters(!showFilters)} className="flex items-center gap-2 btn-outline-gold text-sm py-2 px-4">
             <SlidersHorizontal size={16} /> Filters {hasFilters && <span className="w-2 h-2 bg-gold rounded-full" />}
@@ -90,7 +90,7 @@ export default function Rooms() {
           </div>
         ) : rooms.length === 0 ? (
           <div className="text-center py-20">
-            <p className="text-slate-400 text-lg mb-4">No rooms match your filters</p>
+            <p className="text-slate-400 text-lg mb-4">No rooms match what you picked. Try changing the filters.</p>
             <button onClick={() => setFilters({ type: 'all', maxPrice: '', capacity: '' })} className="btn-outline-gold text-sm py-2 px-4">Clear Filters</button>
           </div>
         ) : (

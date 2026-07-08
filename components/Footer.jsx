@@ -16,7 +16,8 @@ export default function Footer() {
               <span className="font-serif text-xl text-white">Morika <span className="text-gold">Hotel</span></span>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed mb-4">
-              Where luxury meets elegance. Experience world-class hospitality in the heart of the city.
+              A calm, comfortable mountain hotel. Great rooms, good food, and friendly people —
+              we can't wait to welcome you.
             </p>
             <div className="flex gap-3">
               {[Globe, Link2, Share2].map((Icon, i) => (

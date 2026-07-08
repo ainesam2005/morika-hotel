@@ -11,7 +11,7 @@ const TYPE_COLORS = {
 
 export default function RoomCard({ room }) {
   return (
-    <div className="card group hover:ring-1 hover:ring-gold transition-all duration-300">
+    <div className="card group h-full flex flex-col hover:ring-1 hover:ring-gold hover:-translate-y-1.5 hover:shadow-gold-lg transition-all duration-300">
       <div className="relative overflow-hidden h-52">
         <img
           src={room.images?.[0] || '/img/bed1.jpg'}
@@ -29,13 +29,13 @@ export default function RoomCard({ room }) {
         </div>
       </div>
 
-      <div className="p-5">
+      <div className="p-5 flex flex-col flex-1">
         <h3 className="font-serif text-lg text-white mb-1 group-hover:text-gold transition-colors">{room.name}</h3>
         <p className="text-slate-400 text-sm mb-4 line-clamp-2">{room.description}</p>
 
         <div className="flex items-center gap-4 mb-4">
           <span className="flex items-center gap-1 text-slate-400 text-sm">
-            <Users size={14} className="text-gold" /> {room.capacity} guests
+            <Users size={14} className="text-gold" /> Sleeps {room.capacity}
           </span>
           {room.sizeSqm && (
             <span className="flex items-center gap-1 text-slate-400 text-sm">
@@ -44,12 +44,12 @@ export default function RoomCard({ room }) {
           )}
         </div>
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-auto pt-1">
           <div>
-            <span className="text-gold text-xl font-semibold">${room.pricePerNight}</span>
-            <span className="text-slate-400 text-sm"> / night</span>
+            <span className="text-gold text-2xl font-semibold">${room.pricePerNight}</span>
+            <span className="text-slate-400 text-sm"> per night</span>
           </div>
-          <Link href={`/rooms/${room._id}`} className="btn-gold text-sm py-2 px-4">Book Now</Link>
+          <Link href={`/rooms/${room._id}`} className="btn-gold text-sm py-2 px-4">View &amp; Book</Link>
         </div>
       </div>
     </div>

@@ -38,7 +38,7 @@ export default function Register() {
             <span className="text-navy text-2xl font-bold font-serif">M</span>
           </div>
           <h2 className="font-serif text-4xl text-white mb-3">Join Us</h2>
-          <p className="text-slate-300 text-lg">Create your account and unlock exclusive member rates, early check-in, and premium perks.</p>
+          <p className="text-slate-300 text-lg">Create a free account to book rooms and manage your stay. It only takes a minute.</p>
         </div>
       </div>
 

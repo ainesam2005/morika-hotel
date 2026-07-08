@@ -113,13 +113,27 @@ async function seed() {
     await Room.insertMany(rooms);
     console.log(`Seeded ${rooms.length} rooms`);
 
+    // Admin credentials come from environment variables so they are NOT
+    // hardcoded in this (public) repo. Set ADMIN_EMAIL / ADMIN_PASSWORD in
+    // server/.env before seeding. A random fallback password is generated if
+    // ADMIN_PASSWORD is missing, and printed once here so you can log in.
+    const adminEmail = process.env.ADMIN_EMAIL || 'admin@morika.com';
+    const adminPassword =
+      process.env.ADMIN_PASSWORD ||
+      'Ad' + require('crypto').randomBytes(9).toString('base64url');
+
     await User.create({
       name: 'Admin',
-      email: 'admin@morika.com',
-      password: 'Admin@1234',
+      email: adminEmail,
+      password: adminPassword,
       role: 'admin',
     });
-    console.log('Admin user created: admin@morika.com / Admin@1234');
+    console.log('Admin user created.');
+    console.log(`  Email:    ${adminEmail}`);
+    console.log(`  Password: ${adminPassword}`);
+    if (!process.env.ADMIN_PASSWORD) {
+      console.log('  (auto-generated — set ADMIN_PASSWORD in server/.env to choose your own)');
+    }
 
     await mongoose.disconnect();
     console.log('Done!');

@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Menu, X, User, LogOut, Settings, ChevronDown, Sun, Moon } from 'lucide-react';
@@ -21,6 +21,14 @@ export default function Navbar() {
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const isActive = (href) => href === '/' ? pathname === '/' : pathname.startsWith(href);
 
@@ -31,7 +39,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-navy-light">
+    <nav className={`fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b transition-shadow duration-300 ${scrolled ? 'border-navy-lighter shadow-lg shadow-black/20' : 'border-navy-light'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -94,8 +102,8 @@ export default function Navbar() {
               </div>
             ) : (
               <>
-                <Link href="/login" className="text-sm text-slate-300 hover:text-gold transition-colors">Login</Link>
-                <Link href="/register" className="btn-gold text-sm py-2 px-4">Book Now</Link>
+                <Link href="/login" className="text-sm text-slate-300 hover:text-gold transition-colors">Log In</Link>
+                <Link href="/rooms" className="btn-gold text-sm py-2 px-4">Book a Room</Link>
               </>
             )}
           </div>
@@ -130,8 +138,8 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                <Link href="/login" onClick={() => setMobileOpen(false)} className="block text-sm text-slate-300 py-2">Login</Link>
-                <Link href="/register" onClick={() => setMobileOpen(false)} className="btn-gold inline-block text-sm py-2 px-4">Book Now</Link>
+                <Link href="/login" onClick={() => setMobileOpen(false)} className="block text-sm text-slate-300 py-2">Log In</Link>
+                <Link href="/rooms" onClick={() => setMobileOpen(false)} className="btn-gold inline-block text-sm py-2 px-4">Book a Room</Link>
               </>
             )}
           </div>
