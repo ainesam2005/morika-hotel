@@ -9,7 +9,7 @@ import api from '../utils/api';
 
 const services = [
   { icon: Utensils, title: 'Restaurant & Room Service', desc: 'Tasty meals and snacks brought to your room, any time of day' },
-  { icon: Droplets, title: 'Swimming Pool', desc: 'Take a dip and relax at our on-site swimming pool' },
+  { icon: Droplets, title: 'Spa, Sauna & Steam Bath', desc: 'Unwind with a spa treatment, a sauna, or a steam bath' },
   { icon: Dumbbell, title: 'Gym', desc: 'Keep up your workout in our on-site fitness room' },
   { icon: Car, title: 'Free Parking', desc: 'Safe, free parking on-site for all our guests' },
   { icon: Wifi, title: 'Fast Free WiFi', desc: 'Strong, free internet in every room and every corner' },
@@ -17,9 +17,9 @@ const services = [
 ];
 
 const testimonials = [
-  { name: 'Alexandra M.', role: 'Business Traveler', text: 'The best hotel stay I have ever had. The staff were so kind and helpful, and everything was spotless. I felt right at home.', rating: 5 },
-  { name: 'James & Sarah K.', role: 'Honeymoon Couple', text: 'Morika made our honeymoon so special. The room was beautiful and every little detail was just right. We will be back!', rating: 5 },
-  { name: 'Robert Chen', role: 'Regular Guest', text: 'I stay here every time I travel for work. Always clean, always friendly. I recommend it to everyone.', rating: 5 },
+  { name: 'Ronald Akampwera', role: 'Guest review · Google', text: 'Good food, comfortable rooms, and great service. I really enjoyed my stay and I will be back.', rating: 5 },
+  { name: 'Godwin Nimwesiga', role: 'Guest review · Google', text: 'A cool, calm environment with friendly staff. A really nice place to relax in Mbarara.', rating: 5 },
+  { name: 'Blair Trent B.', role: 'Guest review · Google', text: 'Some of the best meals I have had — the restaurant food here is excellent.', rating: 5 },
 ];
 
 export default function Home() {
@@ -36,8 +36,8 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/img/scenery.jpg"
-            alt="Morika Hotel, Mbarara"
+            src="/img/morika-front.jpeg"
+            alt="Hotel Morika, Katete Road, Mbarara"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-navy/75 via-navy/45 to-navy" />
@@ -77,9 +77,9 @@ export default function Home() {
       <section className="bg-navy-light border-y border-navy-lighter">
         <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { img: '/img/food.jpg', label: 'Room Service', desc: 'Fresh breakfast brought right to your door' },
-            { img: '/img/bed6.jpg', label: 'Grand Lobby', desc: 'A warm, welcoming space to relax and unwind' },
-            { img: '/img/finess.jpg', label: 'Gym & Wellness', desc: 'A modern gym you can use any time, day or night' },
+            { img: '/img/morika-reception.jpeg', label: 'Warm Welcome', desc: 'Friendly staff who remember your name' },
+            { img: '/img/morika-grounds.jpeg', label: 'Green Gardens', desc: 'Quiet, leafy spaces to sit and relax' },
+            { img: '/img/morika-parking.jpeg', label: 'Free Parking', desc: 'Safe, free on-site parking for guests' },
           ].map(({ img, label, desc }) => (
             <div key={label} className="group flex items-center gap-4">
               <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">
@@ -206,6 +206,11 @@ export default function Home() {
         <Reveal className="text-center mb-14">
           <p className="section-subtitle">Guest Reviews</p>
           <h2 className="section-title">What Our Guests Say</h2>
+          <p className="text-gold font-semibold mb-3">Rated 3.9 / 5 by guests on Google</p>
+          <p className="text-slate-400 max-w-2xl mx-auto italic">
+            "We may not be the biggest hotel in Mbarara — but we'll remember your name, make your
+            coffee just how you like it, and put your comfort first."
+          </p>
         </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
@@ -229,7 +234,7 @@ export default function Home() {
       {/* ── CTA BANNER ── */}
       <section className="relative py-28 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/img/bed11.jpg" alt="Presidential Suite lounge" className="w-full h-full object-cover object-center" />
+          <img src="/img/morika-grounds.jpeg" alt="Hotel Morika gardens and grounds" className="w-full h-full object-cover object-center" />
           <div className="absolute inset-0 bg-navy/75" />
         </div>
         <Reveal className="relative z-10 text-center px-4">

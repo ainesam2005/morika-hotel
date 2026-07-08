@@ -18,13 +18,13 @@ export const metadata = {
       'A warm, comfortable hotel in Mbarara, Uganda. Cozy rooms, on-site restaurant and bar, pool, gym, conference facilities, free WiFi and parking.',
     type: 'website',
     siteName: 'Morika Hotel',
-    images: [{ url: '/img/scenery.jpg', width: 1200, height: 630, alt: 'Morika Hotel, Mbarara' }],
+    images: [{ url: '/img/morika-front.jpeg', width: 1200, height: 630, alt: 'Morika Hotel, Mbarara' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Morika Hotel — Comfortable Hotel in Mbarara, Uganda',
     description: 'A warm, comfortable hotel in Mbarara, Uganda. Book your stay directly in a couple of minutes.',
-    images: ['/img/scenery.jpg'],
+    images: ['/img/morika-front.jpeg'],
   },
   robots: { index: true, follow: true },
 };

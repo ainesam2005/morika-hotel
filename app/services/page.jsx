@@ -13,10 +13,10 @@ const services = [
   },
   {
     icon: Droplets,
-    title: 'Swimming Pool',
-    description: 'Take a swim or simply relax by our on-site pool — a great way to cool off and unwind after a busy day in Mbarara.',
-    features: ['On-site swimming pool', 'Comfortable poolside seating', 'Great for relaxing', 'Open to all guests'],
-    image: '/img/scenery.jpg',
+    title: 'Spa, Sauna & Steam Bath',
+    description: 'Relax and recharge with a spa treatment, a warm sauna, or a steam bath — a great way to unwind after a busy day in Mbarara.',
+    features: ['Spa treatments', 'Sauna', 'Steam bath', 'A calm, relaxing space'],
+    image: '/img/morika-cottage.jpeg',
     imgPosition: 'object-center',
   },
   {
@@ -64,7 +64,7 @@ export default function Services() {
   return (
     <div className="pt-24 pb-20 min-h-screen">
       <div className="relative h-72 mb-16 overflow-hidden">
-        <img src="/img/bed11.jpg" alt="Morika Hotel Services" className="w-full h-full object-cover object-center" />
+        <img src="/img/morika-lawn.jpeg" alt="Hotel Morika, Mbarara" className="w-full h-full object-cover object-center" />
         <div className="absolute inset-0 bg-navy/65 flex flex-col items-center justify-center text-center px-4">
           <p className="section-subtitle">What We Offer</p>
           <h1 className="section-title mb-2">Hotel Services</h1>

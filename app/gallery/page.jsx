@@ -3,7 +3,13 @@ import { useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const GALLERY = [
-  { src: '/img/scenery.jpg',    cat: 'Rooms',    title: 'Presidential Suite — Open-Air Terrace' },
+  { src: '/img/morika-front.jpeg',     cat: 'Hotel', title: 'Hotel Morika — Main Entrance' },
+  { src: '/img/morika-lawn.jpeg',      cat: 'Hotel', title: 'The Hotel & Garden Lawn' },
+  { src: '/img/morika-grounds.jpeg',   cat: 'Hotel', title: 'Gardens & Grounds' },
+  { src: '/img/morika-cottage.jpeg',   cat: 'Hotel', title: 'Garden Room' },
+  { src: '/img/morika-reception.jpeg', cat: 'Hotel', title: 'Reception & Front Desk' },
+  { src: '/img/morika-block.jpeg',     cat: 'Hotel', title: 'Accommodation Block & Driveway' },
+  { src: '/img/morika-parking.jpeg',   cat: 'Hotel', title: 'Free On-site Parking' },
   { src: '/img/bed9.jpg',       cat: 'Rooms',    title: 'Deluxe Mountain View Room' },
   { src: '/img/bed12.jpg',      cat: 'Rooms',    title: 'Junior Suite' },
   { src: '/img/bed8.jpg',       cat: 'Rooms',    title: 'Executive Suite' },
@@ -23,7 +29,7 @@ const GALLERY = [
   { src: '/img/bed4.jpg',       cat: 'Rooms',    title: 'Standard Room' },
 ];
 
-const CATEGORIES = ['All', 'Rooms', 'Dining', 'Wellness', 'Lobby'];
+const CATEGORIES = ['All', 'Hotel', 'Rooms', 'Dining', 'Wellness', 'Lobby'];
 
 export default function Gallery() {
   const [active, setActive] = useState('All');
@@ -44,12 +50,12 @@ export default function Gallery() {
   return (
     <div className="pt-24 pb-20 min-h-screen">
       <div className="relative h-56 mb-12 overflow-hidden">
-        <img src="/img/bed11.jpg" alt="Gallery" className="w-full h-full object-cover object-center" />
+        <img src="/img/morika-front.jpeg" alt="Hotel Morika, Mbarara" className="w-full h-full object-cover object-center" />
         <div className="absolute inset-0 bg-navy/70 flex flex-col items-center justify-center text-center px-4">
-          <p className="section-subtitle">Visual Tour</p>
-          <h1 className="section-title mb-0">Photo Gallery</h1>
+          <p className="section-subtitle">Photo Gallery</p>
+          <h1 className="section-title mb-0">See Our Hotel</h1>
           <p className="text-slate-300 mt-2 max-w-lg">
-            Explore the beauty of Morika Hotel through our curated collection of photographs.
+            Real photos of Hotel Morika — our building, gardens, reception, and rooms in Mbarara.
           </p>
         </div>
       </div>

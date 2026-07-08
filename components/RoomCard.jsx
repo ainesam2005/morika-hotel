@@ -25,7 +25,7 @@ export default function RoomCard({ room }) {
         </div>
         <div className="absolute top-3 right-3 flex items-center gap-1 bg-navy/80 backdrop-blur-sm rounded-full px-2 py-1">
           <Star size={12} className="text-gold fill-gold" />
-          <span className="text-xs text-white">4.9</span>
+          <span className="text-xs text-white">3.9</span>
         </div>
       </div>
 
