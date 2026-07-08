@@ -1,8 +1,9 @@
 'use client';
 import { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import { MapPin, Phone, MessageCircle, Clock, Send } from 'lucide-react';
 import toast from 'react-hot-toast';
 import api from '../../utils/api';
+import { HOTEL } from '../../utils/hotelInfo';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
@@ -23,10 +24,10 @@ export default function Contact() {
   };
 
   const info = [
-    { icon: MapPin, title: 'Address', lines: ['123 Luxury Boulevard', 'City Center, 10001'] },
-    { icon: Phone, title: 'Phone', lines: ['+1 (555) 123-4567', '+1 (555) 123-4568'] },
-    { icon: Mail, title: 'Email', lines: ['info@morikahotel.com', 'reservations@morikahotel.com'] },
-    { icon: Clock, title: 'Hours', lines: ['Reservations: 24/7', 'Front Desk: 24/7'] },
+    { icon: MapPin, title: 'Address', lines: [HOTEL.address, HOTEL.city] },
+    { icon: Phone, title: 'Call Us', lines: [HOTEL.phone] },
+    { icon: MessageCircle, title: 'WhatsApp', lines: [HOTEL.phone] },
+    { icon: Clock, title: 'Reception', lines: ['Open 24 hours', 'Every day of the week'] },
   ];
 
   return (
@@ -35,7 +36,7 @@ export default function Contact() {
         <div className="text-center mb-12">
           <p className="section-subtitle">Get in Touch</p>
           <h1 className="section-title">Contact Us</h1>
-          <p className="text-slate-400 max-w-xl mx-auto">We're here to make your stay extraordinary. Reach out to us for reservations, inquiries, or any assistance you need.</p>
+          <p className="text-slate-400 max-w-xl mx-auto">Have a question or want to book a room? Give us a call, send a WhatsApp, or drop us a message below — we're happy to help.</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
@@ -51,12 +52,15 @@ export default function Contact() {
                 </div>
               </div>
             ))}
-            <div className="rounded-xl overflow-hidden h-48 bg-navy-light border border-navy-lighter flex items-center justify-center">
-              <div className="text-center">
-                <MapPin size={32} className="text-gold mx-auto mb-2" />
-                <p className="text-slate-400 text-sm">123 Luxury Boulevard</p>
-                <p className="text-slate-500 text-xs">City Center, 10001</p>
-              </div>
+            <div className="rounded-xl overflow-hidden h-56 bg-navy-light border border-navy-lighter">
+              <iframe
+                title={`Map to ${HOTEL.name}`}
+                src={`https://www.google.com/maps?q=${encodeURIComponent(HOTEL.mapQuery)}&output=embed`}
+                className="w-full h-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
             </div>
           </div>
 
@@ -77,7 +81,7 @@ export default function Contact() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="label">Phone</label>
-                    <input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+1 (555) 000-0000" className="input" />
+                    <input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+256 700 000 000" className="input" />
                   </div>
                   <div>
                     <label className="label">Subject *</label>

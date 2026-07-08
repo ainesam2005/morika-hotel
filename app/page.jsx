@@ -9,9 +9,9 @@ import api from '../utils/api';
 
 const services = [
   { icon: Utensils, title: 'Restaurant & Room Service', desc: 'Tasty meals and snacks brought to your room, any time of day' },
-  { icon: Droplets, title: 'Rooftop Pool', desc: 'A pool on the roof with wide-open mountain views' },
-  { icon: Dumbbell, title: 'Gym', desc: 'Open 24 hours, with trainers ready to help if you want' },
-  { icon: Car, title: 'Free Airport Pickup', desc: 'We drive you to and from the airport at no extra cost' },
+  { icon: Droplets, title: 'Swimming Pool', desc: 'Take a dip and relax at our on-site swimming pool' },
+  { icon: Dumbbell, title: 'Gym', desc: 'Keep up your workout in our on-site fitness room' },
+  { icon: Car, title: 'Free Parking', desc: 'Safe, free parking on-site for all our guests' },
   { icon: Wifi, title: 'Fast Free WiFi', desc: 'Strong, free internet in every room and every corner' },
   { icon: Shield, title: '24/7 Help Desk', desc: 'Our friendly team is here to help you day or night' },
 ];
@@ -37,7 +37,7 @@ export default function Home() {
         <div className="absolute inset-0">
           <img
             src="/img/scenery.jpg"
-            alt="Morika Hotel — mountain terrace suite"
+            alt="Morika Hotel, Mbarara"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-navy/75 via-navy/45 to-navy" />
@@ -49,8 +49,8 @@ export default function Home() {
             A Beautiful Place<br />to <span className="text-gradient-gold">Rest & Relax</span>
           </h1>
           <p className="text-slate-200 text-lg md:text-xl max-w-2xl mx-auto mb-12 drop-shadow animate-fade-up" style={{ animationDelay: '120ms' }}>
-            A calm mountain hotel with comfy rooms, great food, and friendly staff.
-            Find your room and book your stay in just a couple of minutes.
+            A warm, comfortable hotel in the heart of Mbarara, Uganda — with cozy rooms, great
+            food, and friendly staff. Find your room and book your stay in just a couple of minutes.
           </p>
 
           <div className="max-w-4xl mx-auto animate-fade-up" style={{ animationDelay: '240ms' }}>
@@ -58,7 +58,7 @@ export default function Home() {
           </div>
 
           <div className="mt-14 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 animate-fade-up" style={{ animationDelay: '360ms' }}>
-            {[['500+', 'Happy Guests'], ['50+', 'Rooms & Suites'], ['15+', 'Years Open']].map(([n, l]) => (
+            {[['24/7', 'Reception'], ['Free', 'WiFi & Parking'], ['On-site', 'Restaurant & Bar']].map(([n, l]) => (
               <div key={l} className="text-center">
                 <div className="text-gold text-3xl font-bold">{n}</div>
                 <div className="text-slate-300 text-sm mt-0.5">{l}</div>
@@ -132,18 +132,18 @@ export default function Home() {
       {/* ── IMMERSIVE SPLIT SECTION ── */}
       <section className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
         <div className="relative overflow-hidden group">
-          <img src="/img/bed9.jpg" alt="Mountain view deluxe room" className="w-full h-full object-cover min-h-[340px] transition-transform duration-700 group-hover:scale-105" />
+          <img src="/img/bed9.jpg" alt="Comfortable deluxe room at Morika Hotel" className="w-full h-full object-cover min-h-[340px] transition-transform duration-700 group-hover:scale-105" />
           <div className="absolute inset-0 bg-navy/30" />
         </div>
         <div className="bg-navy-light flex items-center px-10 py-16 lg:px-16">
           <Reveal>
             <p className="section-subtitle">Rooms & Suites</p>
             <h2 className="font-serif text-3xl md:text-4xl text-white mb-5 leading-snug">
-              Wake Up to<br />Amazing Views
+              Comfortable Rooms,<br />Restful Nights
             </h2>
             <p className="text-slate-400 leading-relaxed mb-8">
-              Look out your window and see mountains and forests all around. Every room has big windows,
-              lots of natural light, and many have their own private balcony.
+              Clean, cozy rooms with comfy beds and plenty of natural light. Air conditioning,
+              free WiFi, and a quiet space to unwind — everything you need for a good night's sleep.
             </p>
             <Link href="/rooms" className="btn-gold">
               Explore Rooms <ArrowRight size={16} />
@@ -233,10 +233,11 @@ export default function Home() {
           <div className="absolute inset-0 bg-navy/75" />
         </div>
         <Reveal className="relative z-10 text-center px-4">
-          <p className="section-subtitle">Special Offer</p>
-          <h2 className="text-4xl md:text-5xl font-serif text-white mb-4">Book Here & Save 15%</h2>
+          <p className="section-subtitle">Ready When You Are</p>
+          <h2 className="text-4xl md:text-5xl font-serif text-white mb-4">Book Your Stay Today</h2>
           <p className="text-slate-300 mb-10 max-w-xl mx-auto text-lg">
-            Book straight from our website and pay less. No hidden fees, and always the best price — guaranteed.
+            Reserve your room in just a couple of minutes. Pay easily by bank transfer or Airtel Money —
+            no card needed.
           </p>
           <Link href="/rooms" className="btn-gold text-lg px-8 py-4">
             Find Your Room <ArrowRight size={18} />

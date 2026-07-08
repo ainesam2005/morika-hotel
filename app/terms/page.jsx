@@ -11,7 +11,7 @@ const sections = [
   { title: '5. Guest Conduct', body: 'Guests are expected to behave respectfully toward staff and other guests. Morika Hotel reserves the right to refuse service or ask guests to vacate the premises if their conduct is deemed disruptive or harmful.' },
   { title: '6. Liability', body: 'Morika Hotel is not liable for loss, theft, or damage to personal belongings during your stay. Guests are responsible for any damage caused to hotel property and may be charged accordingly.' },
   { title: '7. Modifications to Terms', body: 'Morika Hotel reserves the right to update these terms at any time. Continued use of our services after changes constitutes acceptance of the updated terms.' },
-  { title: '8. Contact', body: 'For questions about these Terms, please contact us at legal@morikahotel.com or call +1 (555) 123-4567.' },
+  { title: '8. Contact', body: 'For questions about these Terms, please call or WhatsApp us on +256 702 423 979, or visit us at Katete Road, Mbarara, Uganda.' },
 ];
 
 export default function Terms() {

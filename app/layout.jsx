@@ -3,27 +3,27 @@ import Providers from '../components/Providers';
 
 export const metadata = {
   title: {
-    default: 'Morika Hotel — Luxury Mountain Retreat',
+    default: 'Morika Hotel — Comfortable Hotel in Mbarara, Uganda',
     template: '%s | Morika Hotel',
   },
   description:
-    'Experience world-class luxury at Morika Hotel. Nestled among breathtaking mountain scenery, we offer elegant rooms, fine dining, a serene spa, and 24/7 concierge service. Book your dream getaway directly and save 15%.',
+    'Morika Hotel is a warm, comfortable hotel on Katete Road, Mbarara, Uganda. Clean, cozy rooms, an on-site restaurant and bar, swimming pool, gym, conference hall, free WiFi and parking. Book your stay in a couple of minutes.',
   keywords: [
-    'Morika Hotel', 'luxury hotel', 'mountain resort', 'hotel booking', 'spa hotel',
-    'fine dining hotel', 'luxury accommodation', 'hotel rooms', 'five star hotel',
+    'Morika Hotel', 'Hotel Morika', 'Mbarara hotel', 'hotel in Mbarara', 'Uganda hotel',
+    'Katete Road Mbarara', 'hotel booking Mbarara', 'accommodation Mbarara', 'conference hotel Mbarara',
   ],
   openGraph: {
-    title: 'Morika Hotel — Luxury Mountain Retreat',
+    title: 'Morika Hotel — Comfortable Hotel in Mbarara, Uganda',
     description:
-      'Discover unparalleled hospitality at Morika Hotel. Stunning mountain views, award-winning dining, a world-class spa, and meticulously designed rooms await you.',
+      'A warm, comfortable hotel in Mbarara, Uganda. Cozy rooms, on-site restaurant and bar, pool, gym, conference facilities, free WiFi and parking.',
     type: 'website',
     siteName: 'Morika Hotel',
-    images: [{ url: '/img/scenery.jpg', width: 1200, height: 630, alt: 'Morika Hotel mountain terrace suite' }],
+    images: [{ url: '/img/scenery.jpg', width: 1200, height: 630, alt: 'Morika Hotel, Mbarara' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Morika Hotel — Luxury Mountain Retreat',
-    description: 'Experience world-class luxury at Morika Hotel. Book direct and save 15%.',
+    title: 'Morika Hotel — Comfortable Hotel in Mbarara, Uganda',
+    description: 'A warm, comfortable hotel in Mbarara, Uganda. Book your stay directly in a couple of minutes.',
     images: ['/img/scenery.jpg'],
   },
   robots: { index: true, follow: true },

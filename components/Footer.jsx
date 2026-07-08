@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
-import { MapPin, Phone, Mail, Globe, Link2, Share2 } from 'lucide-react';
+import { MapPin, Phone, MessageCircle, Globe, Link2, Share2 } from 'lucide-react';
+import { HOTEL } from '../utils/hotelInfo';
 
 export default function Footer() {
   return (
@@ -16,8 +17,8 @@ export default function Footer() {
               <span className="font-serif text-xl text-white">Morika <span className="text-gold">Hotel</span></span>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed mb-4">
-              A calm, comfortable mountain hotel. Great rooms, good food, and friendly people —
-              we can't wait to welcome you.
+              A warm, comfortable hotel in the heart of Mbarara, Uganda. Great rooms, good food,
+              and friendly people — we can't wait to welcome you.
             </p>
             <div className="flex gap-3">
               {[Globe, Link2, Share2].map((Icon, i) => (
@@ -44,7 +45,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Services</h4>
             <ul className="space-y-2">
-              {['Restaurant & Bar', 'Spa & Wellness', 'Swimming Pool', 'Fitness Center', 'Concierge', 'Airport Transfer'].map((s) => (
+              {['Restaurant & Bar', 'Swimming Pool', 'Gym', 'Conference Hall', 'Free WiFi', 'Free Parking'].map((s) => (
                 <li key={s} className="text-slate-400 text-sm">{s}</li>
               ))}
             </ul>
@@ -56,15 +57,19 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-slate-400 text-sm">
                 <MapPin size={16} className="text-gold mt-0.5 shrink-0" />
-                123 Luxury Boulevard, City Center, 10001
+                {HOTEL.address}, {HOTEL.city}
               </li>
-              <li className="flex items-center gap-2 text-slate-400 text-sm">
-                <Phone size={16} className="text-gold shrink-0" />
-                +1 (555) 123-4567
+              <li>
+                <a href={HOTEL.phoneHref} className="flex items-center gap-2 text-slate-400 hover:text-gold text-sm transition-colors">
+                  <Phone size={16} className="text-gold shrink-0" />
+                  {HOTEL.phone}
+                </a>
               </li>
-              <li className="flex items-center gap-2 text-slate-400 text-sm">
-                <Mail size={16} className="text-gold shrink-0" />
-                info@morikahotel.com
+              <li>
+                <a href={HOTEL.whatsappHref} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-gold text-sm transition-colors">
+                  <MessageCircle size={16} className="text-gold shrink-0" />
+                  WhatsApp us
+                </a>
               </li>
             </ul>
           </div>

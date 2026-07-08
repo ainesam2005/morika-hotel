@@ -2,8 +2,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { CheckCircle, CalendarDays, Home, AlertCircle } from 'lucide-react';
+import { CheckCircle, Clock, CalendarDays, Home, AlertCircle } from 'lucide-react';
 import ProtectedRoute from '../../../../components/ProtectedRoute';
+import PaymentInstructions from '../../../../components/PaymentInstructions';
 import api from '../../../../utils/api';
 
 function ConfirmPage() {
@@ -22,7 +23,7 @@ function ConfirmPage() {
       <div className="text-center max-w-sm">
         <AlertCircle size={48} className="text-red-400 mx-auto mb-4" />
         <h2 className="font-serif text-2xl text-white mb-2">Could Not Load Booking</h2>
-        <p className="text-slate-400 mb-6">Your payment may still have gone through. Check My Bookings to confirm.</p>
+        <p className="text-slate-400 mb-6">Please check “My Bookings” to see your reservation.</p>
         <Link href="/profile" className="btn-gold">My Bookings</Link>
       </div>
     </div>
@@ -34,14 +35,25 @@ function ConfirmPage() {
     </div>
   );
 
+  const isPaid = booking.paymentStatus === 'paid' || booking.status === 'confirmed';
+  const reference = booking._id?.slice(-8).toUpperCase();
+
   return (
     <div className="pt-24 pb-20 min-h-screen flex items-center justify-center px-4">
       <div className="max-w-lg w-full text-center">
         <div className="w-20 h-20 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-6">
-          <CheckCircle size={40} className="text-gold" />
+          {isPaid
+            ? <CheckCircle size={40} className="text-gold" />
+            : <Clock size={40} className="text-gold" />}
         </div>
-        <h1 className="font-serif text-4xl text-white mb-3">Booking Confirmed!</h1>
-        <p className="text-slate-400 mb-8">Thank you for choosing Morika Hotel. Your reservation details are below.</p>
+        <h1 className="font-serif text-4xl text-white mb-3">
+          {isPaid ? 'Booking Confirmed!' : 'Reservation Received'}
+        </h1>
+        <p className="text-slate-400 mb-8">
+          {isPaid
+            ? 'Thank you for choosing Hotel Morika. Your reservation details are below.'
+            : "Thank you! We've saved your room. It becomes fully confirmed as soon as we receive and check your payment."}
+        </p>
 
         <div className="bg-navy-light rounded-2xl p-6 text-left space-y-4 mb-8 border border-navy-lighter">
           <div className="flex items-center gap-3 pb-4 border-b border-navy-lighter">
@@ -65,21 +77,29 @@ function ConfirmPage() {
               <p className="text-white text-sm font-medium">{booking.guests}</p>
             </div>
             <div>
-              <p className="text-slate-500 text-xs mb-1">Total Paid</p>
+              <p className="text-slate-500 text-xs mb-1">{isPaid ? 'Total Paid' : 'Amount Due'}</p>
               <p className="text-gold text-sm font-semibold">${booking.totalPrice}</p>
             </div>
           </div>
           <div className="pt-3 border-t border-navy-lighter flex items-center justify-between">
             <span className="text-slate-400 text-sm">Booking Reference</span>
-            <span className="text-white font-mono text-xs tracking-wider">{booking._id?.slice(-8).toUpperCase()}</span>
+            <span className="text-white font-mono text-xs tracking-wider">{reference}</span>
           </div>
           <div className="flex items-center justify-between">
             <span className="text-slate-400 text-sm">Status</span>
-            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${booking.status === 'confirmed' ? 'bg-green-900/40 text-green-400' : 'bg-yellow-900/40 text-yellow-400'}`}>
-              {booking.status}
+            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${isPaid ? 'bg-green-900/40 text-green-400' : 'bg-yellow-900/40 text-yellow-400'}`}>
+              {isPaid ? 'Confirmed' : 'Awaiting payment'}
             </span>
           </div>
         </div>
+
+        {/* Payment details shown until the booking is paid/confirmed */}
+        {!isPaid && (
+          <div className="text-left mb-8">
+            <h2 className="font-serif text-xl text-white mb-4 text-center">How to Pay</h2>
+            <PaymentInstructions amount={booking.totalPrice} reference={reference} />
+          </div>
+        )}
 
         <div className="flex gap-3">
           <Link href="/profile" className="btn-outline-gold flex-1 flex items-center justify-center gap-2">

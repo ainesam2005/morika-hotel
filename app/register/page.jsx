@@ -63,7 +63,7 @@ export default function Register() {
               </div>
               <div>
                 <label className="label">Phone</label>
-                <input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+1 (555) 000-0000" className="input" />
+                <input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+256 700 000 000" className="input" />
               </div>
             </div>
             <div>

@@ -5,59 +5,59 @@ import { Utensils, Droplets, Dumbbell, Car, Heart, Coffee, Wifi, Clock, Star, Ph
 const services = [
   {
     icon: Utensils,
-    title: 'The Grand Restaurant & Room Dining',
-    description: 'Indulge in an extraordinary culinary journey. Our chef crafts seasonal menus using the finest locally sourced ingredients — or let us bring the experience directly to your room with our signature in-bed breakfast service.',
-    features: ['Open 7am – 11pm daily', 'International cuisine', 'In-room breakfast service', 'Private dining rooms', 'Sommelier on request'],
+    title: 'Restaurant, Bar & Room Service',
+    description: 'Enjoy tasty local and international meals at our restaurant and bar, or have them brought straight to your room. A fresh breakfast is served every morning.',
+    features: ['Restaurant & bar on-site', 'Local & international dishes', 'Fresh breakfast daily', 'Room service', 'Drinks & cocktails'],
     image: '/img/food.jpg',
     imgPosition: 'object-top',
   },
   {
-    icon: Heart,
-    title: 'Serenity Spa & Wellness',
-    description: 'Escape to our award-winning spa sanctuary. Our expert therapists offer a comprehensive menu of treatments designed to rejuvenate body, mind and soul in surroundings of quiet luxury.',
-    features: ['15 treatment rooms', 'Hammam & steam room', 'Hydrotherapy pool', 'Couples packages', 'In-room treatments available'],
-    image: '/img/bed12.jpg',
-    imgPosition: 'object-center',
-  },
-  {
-    icon: Dumbbell,
-    title: 'Fitness & Recreation Center',
-    description: 'Our state-of-the-art fitness center is open around the clock, equipped with the latest cardiovascular and strength training equipment. Personal trainers are available on request.',
-    features: ['Open 24 hours', 'Latest Technogym equipment', 'Personal trainers', 'Group fitness classes', 'Yoga & Pilates studio'],
-    image: '/img/finess.jpg',
-    imgPosition: 'object-center',
-  },
-  {
     icon: Droplets,
-    title: 'Outdoor Terrace & Mountain Views',
-    description: 'Our crown jewel: an open-air terrace where the mountains meet the sky. Enjoy sunrise cocktails or a late-night soak under the stars with panoramic views that stretch for miles.',
-    features: ['Heated year-round', 'Panoramic mountain views', 'Poolside butler service', 'Private cabana rentals', 'Signature cocktail menu'],
+    title: 'Swimming Pool',
+    description: 'Take a swim or simply relax by our on-site pool — a great way to cool off and unwind after a busy day in Mbarara.',
+    features: ['On-site swimming pool', 'Comfortable poolside seating', 'Great for relaxing', 'Open to all guests'],
     image: '/img/scenery.jpg',
     imgPosition: 'object-center',
   },
   {
-    icon: Car,
-    title: 'Airport Transfer & Limousine',
-    description: 'Arrive and depart in style with our premium chauffeur service. Our fleet of luxury vehicles is available 24/7 to ensure a seamless and comfortable transfer experience from door to door.',
-    features: ['24/7 availability', 'Luxury vehicle fleet', 'Flight tracking', 'Meet & greet service', 'City tours available'],
-    image: '/img/bed9.jpg',
+    icon: Dumbbell,
+    title: 'Gym & Fitness Room',
+    description: 'Keep up your routine in our fitness room, with equipment for a good workout whenever it suits you during your stay.',
+    features: ['On-site gym', 'Cardio & weights', 'Open to all guests'],
+    image: '/img/finess.jpg',
     imgPosition: 'object-center',
   },
   {
     icon: Coffee,
-    title: 'Grand Lobby & Concierge Services',
-    description: 'Step into our contemporary grand lobby — a welcoming space of warmth and elegance. Our dedicated concierge team is at your service 24 hours a day.',
-    features: ['24/7 concierge desk', 'Restaurant reservations', 'Event & theatre tickets', 'Sightseeing tours', 'Business services'],
+    title: 'Meetings & Events',
+    description: 'Planning a meeting, workshop, or celebration? Our conference hall is ready for business events and functions of all sizes.',
+    features: ['Conference hall', 'Meetings & workshops', 'Weddings & functions', 'Space for large groups'],
     image: '/img/bed6.jpg',
+    imgPosition: 'object-center',
+  },
+  {
+    icon: Wifi,
+    title: 'Free WiFi & Parking',
+    description: 'Stay connected with fast, free WiFi throughout the hotel, and park safely on-site at no extra cost — with 24/7 security.',
+    features: ['Free WiFi everywhere', 'Free on-site parking', '24/7 security & CCTV'],
+    image: '/img/bed8.jpg',
+    imgPosition: 'object-center',
+  },
+  {
+    icon: Clock,
+    title: '24/7 Reception & Help',
+    description: 'Our friendly team is at the front desk any time of day or night — ready to help with check-in, bookings, laundry, and tips for getting around Mbarara.',
+    features: ['Front desk open 24/7', 'Laundry service', 'Local tour help', 'Friendly, helpful staff'],
+    image: '/img/bed11.jpg',
     imgPosition: 'object-center',
   },
 ];
 
 const highlights = [
-  { icon: Wifi,  label: 'Complimentary WiFi' },
-  { icon: Clock, label: '24/7 Room Service' },
-  { icon: Star,  label: '5-Star Rated' },
-  { icon: Phone, label: 'Dedicated Butler' },
+  { icon: Wifi,  label: 'Free WiFi' },
+  { icon: Clock, label: '24/7 Reception' },
+  { icon: Utensils, label: 'On-site Restaurant' },
+  { icon: Car,   label: 'Free Parking' },
 ];
 
 export default function Services() {
@@ -69,7 +69,7 @@ export default function Services() {
           <p className="section-subtitle">What We Offer</p>
           <h1 className="section-title mb-2">Hotel Services</h1>
           <p className="text-slate-300 max-w-lg">
-            A full spectrum of premium amenities crafted to make every moment of your stay extraordinary.
+            Everything you need for a comfortable, easy stay — good food, a pool, a gym, meeting spaces, and friendly service.
           </p>
         </div>
       </div>
@@ -126,8 +126,8 @@ export default function Services() {
         <div className="relative rounded-2xl overflow-hidden">
           <img src="/img/bed8.jpg" alt="" className="w-full h-56 object-cover object-center" />
           <div className="absolute inset-0 bg-navy/75 flex flex-col items-center justify-center text-center px-6">
-            <h3 className="font-serif text-3xl text-white mb-3">Ready to Experience Morika?</h3>
-            <p className="text-slate-300 mb-6">Book your stay today and enjoy all our world-class amenities</p>
+            <h3 className="font-serif text-3xl text-white mb-3">Ready to Stay with Us?</h3>
+            <p className="text-slate-300 mb-6">Book your room today and enjoy everything Morika Hotel has to offer.</p>
             <Link href="/rooms" className="btn-gold inline-block">Browse Rooms</Link>
           </div>
         </div>
