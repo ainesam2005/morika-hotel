@@ -9,7 +9,7 @@ export const HOTEL = {
   phoneHref: 'tel:+256702423979',
   whatsappHref: 'https://wa.me/256702423979',
 
-  address: 'Katete Road, Mbarara',
+  address: 'Katete Road',
   city: 'Mbarara, Uganda',
   mapQuery: 'Hotel Morika Mbarara Uganda',
 
