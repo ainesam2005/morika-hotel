@@ -102,6 +102,11 @@ const rooms = [
   },
 ];
 
+// Real Hotel Morika photos, appended to every room's gallery. We don't have
+// real room-interior photos, so each room card keeps a representative interior
+// as its main image and these real hotel photos fill out the gallery.
+const HOTEL_PHOTOS = ['/img/morika-front.jpeg', '/img/morika-grounds.jpeg', '/img/morika-cottage.jpeg'];
+
 async function seed() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
@@ -110,7 +115,7 @@ async function seed() {
     await Room.deleteMany({});
     await User.deleteMany({ role: 'admin' });
 
-    await Room.insertMany(rooms);
+    await Room.insertMany(rooms.map((r) => ({ ...r, images: [...r.images, ...HOTEL_PHOTOS] })));
     console.log(`Seeded ${rooms.length} rooms`);
 
     // Admin credentials come from environment variables so they are NOT
