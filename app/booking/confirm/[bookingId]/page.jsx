@@ -36,7 +36,7 @@ function ConfirmPage() {
   );
 
   const isPaid = booking.paymentStatus === 'paid' || booking.status === 'confirmed';
-  const reference = booking._id?.slice(-8).toUpperCase();
+  const reference = booking.reference || booking._id?.slice(-8).toUpperCase();
 
   return (
     <div className="pt-24 pb-20 min-h-screen flex items-center justify-center px-4">

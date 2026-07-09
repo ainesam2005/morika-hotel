@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Trash2 } from 'lucide-react';
+import { Trash2, Search } from 'lucide-react';
 import toast from 'react-hot-toast';
 import AdminRoute from '../../../components/AdminRoute';
 import AdminNav from '../../../components/AdminNav';
@@ -22,6 +22,7 @@ function AdminBookingsPage() {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('');
+  const [search, setSearch] = useState('');
 
   useEffect(() => { fetchBookings(); }, []);
 
@@ -50,7 +51,18 @@ function AdminBookingsPage() {
     }
   };
 
-  const filtered = filter ? bookings.filter((b) => b.status === filter) : bookings;
+  const q = search.trim().toLowerCase();
+  const filtered = bookings.filter((b) => {
+    if (filter && b.status !== filter) return false;
+    if (!q) return true;
+    const ref = (b.reference || b._id.slice(-6)).toLowerCase();
+    return (
+      ref.includes(q) ||
+      b.user?.name?.toLowerCase().includes(q) ||
+      b.user?.email?.toLowerCase().includes(q) ||
+      b.guestName?.toLowerCase().includes(q)
+    );
+  });
 
   return (
     <div className="pt-24 pb-20 min-h-screen">
@@ -66,6 +78,19 @@ function AdminBookingsPage() {
               </button>
             ))}
           </div>
+        </div>
+
+        <div className="mb-6 flex items-center gap-3 flex-wrap">
+          <div className="relative flex-1 min-w-[240px] max-w-md">
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search by reference, guest name or email…"
+              className="input pl-9"
+            />
+          </div>
+          <span className="text-slate-500 text-sm">{filtered.length} booking{filtered.length !== 1 ? 's' : ''}</span>
         </div>
 
         <div className="bg-navy-light rounded-xl border border-navy-lighter overflow-hidden">
@@ -94,7 +119,7 @@ function AdminBookingsPage() {
                   <tr><td colSpan={8} className="text-center py-10 text-slate-400">No bookings found</td></tr>
                 ) : filtered.map((b) => (
                   <tr key={b._id} className="border-b border-navy-lighter hover:bg-navy-lighter/30 transition-colors">
-                    <td className="px-4 py-4 text-slate-500 font-mono text-xs">{b._id.slice(-6).toUpperCase()}</td>
+                    <td className="px-4 py-4 text-gold font-mono text-xs whitespace-nowrap">{b.reference || b._id.slice(-6).toUpperCase()}</td>
                     <td className="px-4 py-4">
                       <p className="text-slate-300 text-sm">{b.user?.name}</p>
                       <p className="text-slate-500 text-xs">{b.user?.email}</p>

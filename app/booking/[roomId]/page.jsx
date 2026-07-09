@@ -34,6 +34,7 @@ function BookingPage() {
     phone: user?.phone || '',
   });
   const [bookingId, setBookingId] = useState(null);
+  const [bookingRef, setBookingRef] = useState(null);
   const [checking, setChecking] = useState(false);
   const [creatingBooking, setCreatingBooking] = useState(false);
 
@@ -51,6 +52,7 @@ function BookingPage() {
         setCheckOut(new Date(data.checkOut));
         setGuests(data.guests);
         setBookingId(data._id);
+        setBookingRef(data.reference || data._id.slice(-8).toUpperCase());
         setStep(4);
       })
       .catch(() => {});
@@ -94,6 +96,7 @@ function BookingPage() {
         guestPhone: guestDetails.phone,
       });
       setBookingId(booking._id);
+      setBookingRef(booking.reference || booking._id.slice(-8).toUpperCase());
       updateBooking({ bookingId: booking._id, totalPrice: booking.totalPrice, totalNights: booking.totalNights });
       setStep(4);
     } catch (err) {
@@ -237,7 +240,7 @@ function BookingPage() {
               Your room is reserved. Pay with either option below to confirm it — you'll pay directly, with no card needed.
             </p>
 
-            <PaymentInstructions amount={total} reference={bookingId.slice(-8).toUpperCase()} />
+            <PaymentInstructions amount={total} reference={bookingRef} />
 
             <button
               onClick={() => router.push(`/booking/confirm/${bookingId}`)}

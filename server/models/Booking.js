@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema({
+  // Short, human-friendly booking reference shared by guest and admin (e.g. MRK-7F3K9Q).
+  reference: { type: String, unique: true, sparse: true, index: true, uppercase: true, trim: true },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   room: { type: mongoose.Schema.Types.ObjectId, ref: 'Room', required: true },
   checkIn: { type: Date, required: true },

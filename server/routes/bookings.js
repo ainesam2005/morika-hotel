@@ -4,6 +4,7 @@ const Booking = require('../models/Booking');
 const Room = require('../models/Room');
 const { verifyToken } = require('../middleware/authMiddleware');
 const { requireAdmin } = require('../middleware/adminMiddleware');
+const { generateUniqueReference } = require('../utils/reference');
 
 // Auth: create booking
 router.post('/', verifyToken, async (req, res) => {
@@ -28,7 +29,10 @@ router.post('/', verifyToken, async (req, res) => {
     const totalNights = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
     const totalPrice = +(totalNights * room.pricePerNight * 1.1).toFixed(2); // 10% tax
 
+    const reference = await generateUniqueReference(Booking);
+
     const booking = await Booking.create({
+      reference,
       user: req.user._id,
       room: roomId,
       checkIn: checkInDate,

@@ -122,7 +122,7 @@ function ProfilePage() {
                         </div>
 
                         <div className="flex items-center gap-3 flex-wrap">
-                          <span className="text-slate-500 text-xs">Ref: {b._id.slice(-8).toUpperCase()}</span>
+                          <span className="text-slate-400 text-xs font-mono">Ref: {b.reference || b._id.slice(-8).toUpperCase()}</span>
 
                           {b.status === 'pending' && b.paymentStatus === 'pending' && (
                             <Link href={`/booking/${b.room?._id}?resume=${b._id}`} className="text-xs text-gold hover:underline font-medium">
